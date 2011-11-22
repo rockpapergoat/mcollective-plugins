@@ -15,8 +15,14 @@ module MCollective
               reply[:output] = "No OD or LDAP nodes present."
           else
         reply[:output] = odlist
-          end 
+          end
+        end
+
+      action 'say' do
+        %x(say "here's a message.")
+        reply[:output] = "i have said a thing."
       end
-    end
+      
+     end
   end
 end

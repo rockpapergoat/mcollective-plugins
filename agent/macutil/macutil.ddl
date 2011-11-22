@@ -13,3 +13,9 @@ action "odlist", :description => "lists any ldap servers in the od config" do
          :description => "Current LDAP servers",
          :display_as  => "LDAP servers"
 end
+
+action "say", :description => "says a phrase" do
+    display :failed
+    
+    output :output
+end
