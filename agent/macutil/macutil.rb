@@ -9,6 +9,7 @@ module MCollective
                :url         => 'http://github.com/rockpapergoat',
                :timeout     => 100
 
+      # usage "mco rpc macutil odutil [options] [filters]"
       action 'odlist' do
           odlist =  %x(dscl localhost -list /LDAPv3).split("\n")
           if odlist.empty?
@@ -18,9 +19,22 @@ module MCollective
           end
         end
 
+      # usage "mco rpc macutil say [options] [filters] msg=<phrase>"
       action 'say' do
-        %x(say "here's a message.")
-        reply[:output] = "i have said a thing."
+        validate :msg, String
+        phrase = request[:msg]
+        %x(say #{phrase})
+        reply[:output] = "#{phrase}"
+      end
+
+      # usage "mco rpc macutil wan_ip [options] [filters]
+      action 'wan_ip' do
+        reply[:output] = %x(curl http://ifconfig.me).chomp
+      end
+      
+      # usage "mco rpc macutil wan_host [options] [filters]
+      action 'wan_host' do
+        reply[:output] = %x(curl http://ifconfig.me/host).chomp
       end
       
      end

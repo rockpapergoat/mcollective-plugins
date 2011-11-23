@@ -19,3 +19,18 @@ action "say", :description => "says a phrase" do
     
     output :output
 end
+
+action "wan_ip", :description => "returns your wan ip" do
+    display :always
+    output :output,
+      :description => "WAN IP:",
+      :display_as  => "IP"
+end
+
+action "wan_host", :description => "returns your wan hostname" do
+    display :always
+    output :output,
+      :description => "WAN hostname:",
+      :display_as  => "WAN"
+      
+end
